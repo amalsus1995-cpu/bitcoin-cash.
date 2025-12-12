@@ -8,9 +8,9 @@
   <style>
     body {
       margin: 0;
-      font-family: Tahoma, Arial;
       background: #000;
       color: #fff;
+      font-family: Tahoma, Arial;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -21,76 +21,82 @@
       width: 95%;
       max-width: 420px;
       background: #111;
-      padding: 20px;
-      border-radius: 15px;
+      padding: 25px;
+      border-radius: 18px;
+      box-shadow: 0 0 25px rgba(255,215,0,.2);
     }
 
     h1 {
       text-align: center;
       color: gold;
-      margin-bottom: 20px;
+      margin-bottom: 25px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 14px;
     }
 
     input {
       width: 100%;
-      padding: 14px;
-      margin-bottom: 12px;
-      border-radius: 10px;
+      padding: 15px;
+      border-radius: 12px;
       border: none;
       font-size: 16px;
+      margin-bottom: 15px;
     }
 
     button {
       width: 100%;
-      padding: 16px;
+      padding: 18px;
       font-size: 18px;
-      border-radius: 12px;
+      border-radius: 14px;
       border: none;
-      margin-top: 10px;
       cursor: pointer;
+      margin-top: 10px;
     }
 
     .login {
       background: gold;
       color: #000;
+      font-weight: bold;
     }
 
     .signup {
-      background: #2d8cff;
+      background: #3498db;
       color: #fff;
+      font-weight: bold;
     }
 
     .msg {
-      margin-top: 12px;
+      margin-top: 15px;
       text-align: center;
-      color: orange;
       font-size: 14px;
+      color: orange;
     }
   </style>
 </head>
 
 <body>
-
   <div class="box">
     <h1>بيتكوين كاش</h1>
 
-    <input type="email" id="email" placeholder="البريد الإلكتروني">
-    <input type="password" id="password" placeholder="كلمة المرور">
+    <label>البريد الإلكتروني</label>
+    <input id="email" type="email" placeholder="name@example.com" />
+
+    <label>كلمة المرور</label>
+    <input id="password" type="password" placeholder="********" />
 
     <button class="login" onclick="login()">تسجيل دخول</button>
     <button class="signup" onclick="signup()">إنشاء حساب</button>
 
-    <div class="msg" id="msg"></div>
+    <div id="msg" class="msg"></div>
   </div>
 
-  <!-- Supabase Library -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-  <!-- Supabase Config -->
-  <script src="./supabase.js"></script>
-
-  <!-- Auth Logic -->
-  <script src="./auth.js"></script>
-
+  <!-- Supabase -->
+  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+  <script type="module" src="./supabase.js"></script>
+  <script type="module" src="./auth.js"></script>
 </body>
 </html>
