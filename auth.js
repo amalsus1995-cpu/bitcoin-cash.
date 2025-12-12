@@ -1,45 +1,39 @@
-const msg = document.getElementById("msg");
+import { supabase } from "./supabase.js";
 
-async function signup() {
-  msg.innerText = "جاري إنشاء الحساب...";
+window.login = async function () {
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+  const msg = document.getElementById("msg");
 
-  const email = document.getElementById("email").value.trim();
-  const password = document.getElementById("password").value.trim();
-
-  if (!email || !password) {
-    msg.innerText = "يرجى إدخال الإيميل وكلمة المرور";
-    return;
-  }
-
-  const { data, error } = await supabase.auth.signUp({
-    email,
-    password
-  });
-
-  if (error) {
-    msg.innerText = error.message;
-    return;
-  }
-
-  msg.innerText = "✅ تم إنشاء الحساب، يمكنك تسجيل الدخول الآن";
-}
-
-async function login() {
   msg.innerText = "جاري تسجيل الدخول...";
 
-  const email = document.getElementById("email").value.trim();
-  const password = document.getElementById("password").value.trim();
-
-  const { data, error } = await supabase.auth.signInWithPassword({
+  const { error } = await supabase.auth.signInWithPassword({
     email,
-    password
+    password,
   });
 
   if (error) {
     msg.innerText = error.message;
-    return;
+  } else {
+    window.location.href = "home.html";
   }
+};
 
-  // نجاح
-  window.location.href = "home.html";
-}
+window.signup = async function () {
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+  const msg = document.getElementById("msg");
+
+  msg.innerText = "جاري إنشاء الحساب...";
+
+  const { error } = await supabase.auth.signUp({
+    email,
+    password,
+  });
+
+  if (error) {
+    msg.innerText = error.message;
+  } else {
+    msg.innerText = "✅ تم إنشاء الحساب، يمكنك تسجيل الدخول الآن";
+  }
+};
